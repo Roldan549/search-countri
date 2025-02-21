@@ -1,20 +1,27 @@
 import { useEffect, useRef, useState } from "react"
 
 
-export const Search = ({setCountries}) => {
+export const Search = ({setCountries, setError}) => {
     const [band,setBand] = useState(false)
     const inputRef = useRef()
 
     const getContries = async (name)=> {
         let response = await fetch("https://restcountries.com/v3.1/name/"+name)
         let data = await response.json()
+        console.log(data)
+        if (data.status == 404) {
+            setError(true)
+            return
+        }
+        setError(false)
         setCountries(data)
     }
 
     useEffect(()=>{
         if(band){
+            if (inputRef.current.value !== "") {
             getContries(inputRef.current.value)
-            console.log(inputRef.current.value)
+        }
         }
 
         return setBand(false)

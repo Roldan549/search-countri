@@ -1,8 +1,14 @@
-export const ShowContries = ({contries}) => {
-     return <>
+export const ShowContries = ({contries, error}) => {
+    if (error) {
+        return <>
+        <h2>Resultados</h2>
+        <h3>No se encontro el pais</h3>
+        </>
+    }
+     return <div>
     <h2>Resultados</h2>
     {contries.map((element,index)=>{
-        console.log()
+
 
         return <div key={index}>  
             <h3>{element.name.common}</h3>
@@ -13,5 +19,5 @@ export const ShowContries = ({contries}) => {
     })}
     
    
-    </>
+    </div>
 }

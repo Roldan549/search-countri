@@ -5,14 +5,13 @@ import { ShowContries } from './components/ShowContries'
 
 function App() {
   const[contries,setCountries] = useState([])
-
-  console.log(contries)
+  const [error,setError] = useState(false)
 
   return (
     <>
       <h1>Buscador de paises</h1>
-      <Search setCountries={setCountries} />
-      <ShowContries contries={contries} />
+      <Search setCountries={setCountries} setError={setError} />
+      <ShowContries contries={contries} error={error} />
     </>
   )
 }
